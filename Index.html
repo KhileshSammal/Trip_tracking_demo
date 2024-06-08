@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Road Trip Chat - June 2024</title>
+  <script src="https://cdn.socket.io/4/socket.io.min.js"></script>
+</head>
+<body>
+  <h1>Road Trip Chat - June 2024</h1>
+  <div id="chat-messages">
+    </div>
+
+  <form id="chat-form">
+    <label for="message">Message:</label>
+    <textarea id="message" name="message" rows="3"></textarea>
+    <button type="submit">Send</button>
+    <button type="button" id="share-location">Share Location</button>
+  </form>
+
+  <script>
+    // Function to handle chat message submission
+    function sendMessage() {
+      const message = document.getElementById('message').value;
+      // Send the message to the server-side component (implementation required)
+      // ...
+
+      // Clear the message input field
+      document.getElementById('message').value = '';
+
+      // Simulate receiving a message from another user (replace with actual server communication)
+      const receivedMessage = {
+        user: 'Friend 1',
+        message: 'Hey everyone, just arrived at the rest stop!'
+      };
+      displayMessage(receivedMessage);
+    }
+
+    // Function to display chat messages
+    function displayMessage(message) {
+      const chatMessages = document.getElementById('chat-messages');
+      const messageElement = document.createElement('div');
+      messageElement.classList.add('message');
+      messageElement.innerHTML = `<b>${message.user}</b>: ${message.message}`;
+      chatMessages.appendChild(messageElement);
+      chatMessages.scrollTop = chatMessages.scrollHeight; // Auto-scroll to the latest message
+    }
+
+    // Function to handle location sharing (replace with a user consent prompt and secure method)
+    function shareLocation() {
+      // Prompt the user for location permission (security best practice)
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+
+          // Create a shareable link with user's location (replace with privacy-preserving method)
+          const locationLink = `https://maps.google.com/?q=${latitude},${longitude}`;
+
+          // Simulate sending the location link to other users (replace with actual server communication)
+          const locationMessage = {
+            user: 'Me',
+            message: `Here's my current location: <a href="${locationLink}">View on Google Maps</a>`
+          };
+          displayMessage(locationMessage);
+        });
+      } else {
+        alert("Geolocation is not supported by this browser.");
+      }
+    }
+
+    // Event listeners for form submission and location sharing button
+    document.getElementById('chat-form').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent default form submission behavior
+      sendMessage();
+    });
+    document.getElementById('share-location').addEventListener('click', shareLocation);
+
+    // **Important:** Add server-side implementation for real-time communication
+    // This includes setting up a socket.io server, handling message broadcasts, and user authentication.
+    // Consider using a secure backend framework like Node.js with Express and Socket.IO.
+  </script>
+</body>
+</html>
