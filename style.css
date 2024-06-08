@@ -1,0 +1,28 @@
+body {
+  background-color: #222; /* Dark background color */
+  color: #ddd; /* Light text color */
+  font-family: sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#chat-messages {
+  border: 1px solid #444; /* Dark border color */
+  border-radius: 5px;
+  padding: 10px;
+  height: 300px; /* Adjust height as needed */
+  overflow-y: scroll; /* Enable scrolling for long chat conversations */
+}
+
+.message {
+  margin-bottom: 10px;
+}
+
+.message b {
+  color: #ffa500; /* Username color */
+}
